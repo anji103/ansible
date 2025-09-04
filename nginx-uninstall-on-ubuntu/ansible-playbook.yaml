@@ -1,0 +1,16 @@
+---
+- name: Uninstall nginx on Ubuntu
+  hosts: all
+  become: yes
+  tasks:
+    - name: Remove nginx package
+      apt:
+        name: nginx
+        state: absent
+        purge: yes   # removes config files too
+
+    - name: Remove unused dependencies
+      apt:
+        autoremove: yes
+        purge: yes
+
